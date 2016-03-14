@@ -79,6 +79,8 @@ public class AddressBookEntry implements Comparable{
 		return result;
 	}
 
+	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -88,7 +90,31 @@ public class AddressBookEntry implements Comparable{
 		if (getClass() != obj.getClass())
 			return false;
 		AddressBookEntry other = (AddressBookEntry) obj;
-		
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
+			return false;
+		if (phoneNumber == null) {
+			if (other.phoneNumber != null)
+				return false;
+		} else if (!phoneNumber.equals(other.phoneNumber))
+			return false;
 		if (zip == null) {
 			if (other.zip != null)
 				return false;
@@ -105,6 +131,15 @@ public class AddressBookEntry implements Comparable{
 
 	@Override
 	public int compareTo(Object o) {
-		return this.zip.compareTo(((AddressBookEntry)o).getZip());
+		if(!this.zip.equalsIgnoreCase(((AddressBookEntry)o).getZip())){
+			return this.zip.compareTo(((AddressBookEntry)o).getZip());
+		}else if(!this.lastName.equalsIgnoreCase(((AddressBookEntry)o).getLastName())){
+			return this.lastName.compareTo(((AddressBookEntry)o).getLastName());
+		}else if(!this.firstName.equalsIgnoreCase(((AddressBookEntry)o).getFirstName())){
+			return this.firstName.compareTo(((AddressBookEntry)o).getFirstName());
+		}else{
+			return this.phoneNumber.compareTo(((AddressBookEntry)o).getPhoneNumber());
+		}
+		
 	}	
 }

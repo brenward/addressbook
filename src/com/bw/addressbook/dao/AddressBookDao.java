@@ -63,14 +63,14 @@ public class AddressBookDao {
 
 			@Override
 			public int compare(AddressBookEntry o1, AddressBookEntry o2) {
-				if(o1.getZip().equalsIgnoreCase(o2.getZip())){
-					return 0;
-				}else if(!o1.getLastName().equals(o2.getLastName())){
+				if(!o1.getLastName().equals(o2.getLastName())){
 					return o1.getLastName().compareToIgnoreCase(o2.getLastName());
 				}else if(!o1.getFirstName().equals(o2.getFirstName())) {
 					return o1.getFirstName().compareToIgnoreCase(o2.getFirstName());
-				}else{
+				}else if(!o1.getZip().equals(o2.getZip())){
 					return o1.getZip().compareToIgnoreCase(o2.getZip());
+				}else{
+					return o1.getPhoneNumber().compareToIgnoreCase(o2.getPhoneNumber());
 				}
 			}
 		
@@ -88,4 +88,6 @@ public class AddressBookDao {
 	public boolean getSaved(){
 		return saved;
 	}
+
+	
 }
