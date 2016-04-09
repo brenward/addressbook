@@ -5,12 +5,12 @@ import java.util.TreeSet;
 
 import com.bw.addressbook.model.AddressBookEntry;
 
-public class AddressBookDao {
+public class AddressBookDaoFile{
 	private Database database;
 	private TreeSet<AddressBookEntry> addressBook;
 	private boolean saved;
 	
-	public AddressBookDao(){
+	public AddressBookDaoFile(){
 		database = Database.getDatabase();
 		addressBook = database.readInData();
 		saved = true;

@@ -82,4 +82,11 @@ public class UserInterface {
 		}
 		return false;
 	}
+	
+	public int addressId(){
+		System.out.print("Enter ID of address: ");
+		int id = sc.nextInt();
+		sc.nextLine();
+		return id;
+	}
 }
