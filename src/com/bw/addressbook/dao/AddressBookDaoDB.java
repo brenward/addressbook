@@ -12,7 +12,7 @@ import java.util.Comparator;
 import com.bw.addressbook.model.Address;
 import com.bw.addressbook.model.AddressBookEntry;
 
-public class AddressBookDaoDB {
+public class AddressBookDaoDB implements AddressBookDao{
 	
 	private String url;
 	private String username;
@@ -63,7 +63,7 @@ public class AddressBookDaoDB {
 	
 	private AddressBookEntry createAddressBookEntry(ResultSet rs) throws SQLException {
 		Address address = new Address(rs.getString("address1"),rs.getString("address2"),rs.getString("town"),rs.getString("city"));
-		AddressBookEntry addressBookEntry = new AddressBookEntry(rs.getString("firstName"), rs.getString("lastName"), address, rs.getString("phoneNumber"),rs.getString("email"), rs.getString("zip"));
+		AddressBookEntry addressBookEntry = new AddressBookEntry(rs.getInt("idAddress"),rs.getString("firstName"), rs.getString("lastName"), address, rs.getString("phoneNumber"),rs.getString("email"), rs.getString("zip"));
 		return addressBookEntry;
 	}
 

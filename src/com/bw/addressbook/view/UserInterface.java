@@ -43,7 +43,7 @@ public class UserInterface {
 		String email = sc.nextLine();
 		System.out.print("Type Zip: ");
 		String zip = sc.nextLine();
-		return new AddressBookEntry(firstName,lastName,new Address(address1,address2,town,city),phone,email,zip);
+		return new AddressBookEntry(0,firstName,lastName,new Address(address1,address2,town,city),phone,email,zip);
 	}
 
 

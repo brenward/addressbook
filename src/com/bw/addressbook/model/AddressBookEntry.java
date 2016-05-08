@@ -1,6 +1,7 @@
 package com.bw.addressbook.model;
 
 public class AddressBookEntry implements Comparable{
+	private int idAddress;
 	private String firstName;
 	private String lastName;
 	private Address address;
@@ -8,8 +9,9 @@ public class AddressBookEntry implements Comparable{
 	private String email;
 	private String zip;
 	
-	public AddressBookEntry(String firstName, String lastName, Address address, String phoneNumber, String email,
+	public AddressBookEntry(int idAddress, String firstName, String lastName, Address address, String phoneNumber, String email,
 			String zip) {
+		this.idAddress = idAddress;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
@@ -64,6 +66,10 @@ public class AddressBookEntry implements Comparable{
 	
 	public void setZip(String zip) {
 		this.zip = zip;
+	}
+	
+	public int getIdAddress(){
+		return idAddress;
 	}
 
 	@Override
@@ -125,7 +131,7 @@ public class AddressBookEntry implements Comparable{
 
 	@Override
 	public String toString() {
-		return "AddressBookEntry [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address
+		return "AddressBookEntry [idAddress=" + idAddress +", firstName=" + firstName + ", lastName=" + lastName + ", address=" + address
 				+ ", phoneNumber=" + phoneNumber + ", email=" + email + ", zip=" + zip + "]";
 	}
 

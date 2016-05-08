@@ -10,7 +10,8 @@ import java.io.OutputStreamWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.TreeSet;
+import java.util.ArrayList;
+import java.util.Map;
 
 import com.bw.addressbook.model.Address;
 import com.bw.addressbook.model.AddressBookEntry;
@@ -28,8 +29,8 @@ public class Database {
 		return DATABASE_INSTANCE;
 	}
 	
-	public TreeSet<AddressBookEntry> readInData(){
-		TreeSet<AddressBookEntry> addressBook = new TreeSet<AddressBookEntry>();
+	public ArrayList<AddressBookEntry> readInData(){
+		ArrayList<AddressBookEntry> addressBook = new ArrayList<AddressBookEntry>();
 		
 		try(InputStream in = Files.newInputStream(database)){
 			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
@@ -37,12 +38,13 @@ public class Database {
 			System.out.println("Reading in Database");
 			while(entry != null){
 				String[] rawAddressBookEntry = entry.split(",");
-				AddressBookEntry addressBookEntry = new AddressBookEntry(rawAddressBookEntry[0],
+				AddressBookEntry addressBookEntry = new AddressBookEntry(Integer.parseInt(rawAddressBookEntry[0]),
 						rawAddressBookEntry[1],
-						new Address(rawAddressBookEntry[2],rawAddressBookEntry[3],rawAddressBookEntry[4],rawAddressBookEntry[5]),
-						rawAddressBookEntry[6],
+						rawAddressBookEntry[2],
+						new Address(rawAddressBookEntry[3],rawAddressBookEntry[4],rawAddressBookEntry[5],rawAddressBookEntry[6]),
 						rawAddressBookEntry[7],
-						rawAddressBookEntry[8]);
+						rawAddressBookEntry[8],
+						rawAddressBookEntry[9]);
 				addressBook.add(addressBookEntry);
 				entry = reader.readLine();
 			}
@@ -53,11 +55,13 @@ public class Database {
 		return addressBook;
 	}
 	
-	public boolean writeOutData(TreeSet<AddressBookEntry> addressBook){
+	public boolean writeOutData(ArrayList<AddressBookEntry> addressBook){
 		try(OutputStream out = Files.newOutputStream(database)){
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out));
+			
 			for(AddressBookEntry entry:addressBook){
 				StringBuilder sb = new StringBuilder();
+				sb.append(entry.getIdAddress() + ",");
 				sb.append(entry.getFirstName() + ",");
 				sb.append(entry.getLastName() + ",");
 				sb.append(entry.getAddress().getAddress1() + ",");

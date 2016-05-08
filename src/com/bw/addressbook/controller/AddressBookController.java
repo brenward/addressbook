@@ -2,15 +2,17 @@ package com.bw.addressbook.controller;
 
 import java.util.Scanner;
 
+import com.bw.addressbook.dao.AddressBookDao;
 import com.bw.addressbook.dao.AddressBookDaoDB;
+import com.bw.addressbook.dao.AddressBookDaoFile;
 import com.bw.addressbook.view.UserInterface;
 
 public class AddressBookController {
-	private AddressBookDaoDB addressBookDao;
+	private AddressBookDao addressBookDao;
 	private UserInterface userInterface;
 	
 	public AddressBookController(){
-		addressBookDao = new AddressBookDaoDB();		
+		addressBookDao = new AddressBookDaoFile();		
 		userInterface = new UserInterface(new Scanner(System.in));
 	}
 	
